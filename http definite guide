@@ -147,7 +147,91 @@ client, and any data sent back on the TCP connection is displayed onscreen.
 1.7 Protocol Versions
 
 HTTP/0.9
-The 1991 prototype
+The 1991 prototype, supports only GET method and does not support any MIME typea and HTTP headers.
+
+HTTP/1.0 added version numbers, HTTP headers, additional methods, and multimedia object handling.
+
+HTTP/1.0+
+including long-lasting "keep-alive" connections, virtual hosting support, andproxy connection support, were added to HTTP and became unofficial, de facto standards.
+
+HTTP/1.1 focused on correcting architectural flaws in the design of HTTP, specifying
+semantics, introducing significant performance optimizations, and removing mis-features.
+
+
+1.8 Architectural Components of the Web
+
+Proxies
+HTTP intermediaries that sit between clients and servers
+
+Caches
+HTTP storehouses that keep copies of popular web pages close to clients
+
+Gateways
+Special web servers that connect to other applications
+
+Tunnels
+Special proxies that blindly forward HTTP communications
+
+Agents
+Semi-intelligent web clients that make automated HTTP requests
+
+
+
+1.8.1 Proxies
+
+
+a proxy sits between a client and a server, receiving all of the client's HTTP
+requests and relaying the requests to the server (perhaps after modifying the requests). These
+applications act as a proxy for the user, accessing the server on the user's behalf.
+
+
+Proxies are often used for security, acting as trusted intermediaries through which all web traffic
+flows. Proxies can also filter requests and responses;
+
+for example, to detect application viruses in
+corporate downloads or to filter adult content away from elementary-school students.
+
+
+1.8.2 Caches
+
+A web cache or caching proxy is a special type of HTTP proxy server that keeps copies of popular
+documents that pass through the proxy. The next client requesting the same document can be served
+from the cache's personal copy
+
+1.8.3 Gateways(indirection)
+
+Gateways are special servers that act as intermediaries for other servers. They are often used to
+convert HTTP traffic to another protocol.
+
+A gateway always receives requests as if it was the origin server for the resource.
+The client may not be aware it is communicating with a gateway.
+
+Tunnels are HTTP applications that, after setup, blindly relay raw data between two connections.
+
+User agents (or just agents) are client programs that make HTTP requests on the user's behalf. Any
+application that issues web requests is an HTTP agent.
+
+These automated agents often have colorful names, such as "spiders"
+
+Chapter 2. URLs and Resources
+
+Uniform resource locators (URLs) are the standardized names for the Internet's resources. URLs point
+to pieces of electronic information, telling you where they are located and how to interact with them.
+
+
+Say you want to fetch the URL http://www.joes-hardware.com/seasonal/index-fall.html:
+
+• The first part of the URL (http) is the URL scheme. The scheme tells a web client how to
+access the resource. In this case, the URL says to use the HTTP protocol.
+
+• The second part of the URL (www.joes-hardware.com) is the server location. This tells the
+web client where the resource is hosted.
+
+• The third part of the URL (/seasonal/index-fall.html) is the resource path. The path tells what
+particular local resource on the server is being requested.
+
+
+
 
 
 

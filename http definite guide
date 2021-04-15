@@ -1,1 +1,155 @@
+Chapter-1
+
+When you browse to a page, such as "http://www.oreilly.com/index.html," your browser sends an
+HTTP request to the server www.oreilly.com (see Figure 1-1). The server tries to find the desired
+object (in this case, "/index.html") and, if successful, sends the object to the client in an HTTP
+response, along with the type of the object, the length of the object, and other information
+
+Web servers host web resources they can be static files or oftware programs that
+generate content on demand
+
+1.3.1 Media Types
+
+Because the Internet hosts many thousands of different data types, HTTP carefully tags each object
+being transported through the Web with a data format label called a MIME type.
+
+A MIME type is a textual label, represented as a primary object type and a specific subtype, separated
+by a slash.
+
+An HTML-formatted text document would be labeled with type text/html .
+
+A plain ASCII text document would be labeled with type text/plain .
+
+A JPEG version of an image would be image/jpeg .
+
+A GIF-format image would be image/gif .
+
+An Apple QuickTime movie would be video/quicktime .
+
+A Microsoft PowerPoint presentation would be application/vnd.ms-
+powerpoint .
+
+
+1.3.2 URIs
+
+URIsare like the postal
+addresses of the Internet, uniquely identifying and locating information resources around the world.
+
+Given the URI, HTTP can retrieve the object
+
+URIs come in two flavors, called
+URLs and URNs.
+
+1.3.3 URLs
+
+The uniform resource locator (URL) is the most common form of resource identifier. URLs describe
+the specific location of a resource on a particular server. They tell you exactly how to fetch a resource
+from a precise,
+
+
+
+1.3.4 URNs
+
+The second flavor of URI is the uniform resource name, or URN. A URN serves as a unique name for
+a particular piece of content, independent of where the resource currently resides. These location-
+independent URNs allow resources to move from place to place. URNs also allow resources to be
+accessed by multiple network access protocols while maintaining the same name
+
+
+URN might be used to name the Internet standards document "RFC 2141"
+regardless of where it resides (it may even be copied in several places): urn:ietf:rfc:2141
+
+To work effectively, URNs need a supporting
+infrastructure to resolve resource locations; the lack of such an infrastructure has also slowed their
+adoption
+
+
+1.4.1 Methods
+
+HTTP method Description
+
+GET         Send named resource from the server to the client.
+
+PUT         Store data from client into a named server resource.
+
+DELETE      Delete the named resource from a server.
+
+POST        Send client data into a server gateway application.
+
+HEAD        Send just the HTTP headers from the response for the named resource.
+
+
+1.4.2 Status Codes
+The status code is a three-digit numeric
+code that tells the client if the request succeeded, or if other actions are required
+
+200 OK document returned correctly
+302 Redirect, Go to some other place to get the resource.
+404 Not Found, can't find the resource.
+
+
+1.4.3 Web Pages Can Consist of Multiple Objects
+
+An application often issues multiple HTTP transactions to accomplish a task
+
+a web browser issues a cascade of HTTP transactions to fetch and display a graphics-rich web page.
+
+Example:
+The browser performs one transaction to fetch the HTML "skeleton" that describes the page layout,
+Then issues additional HTTP transactions for each embedded image, graphics pane, Java applet, etc
+These embedded resousece might reside on different servers.
+Thus, a "webpage" often is a collection of resources, not a single resource
+
+HTTP messages consist of three parts:
+
+Start line
+The first line of the message is the start line, indicating what to do for a request or what
+happened for a response.
+
+Header fields
+Zero or more header fields follow the start line
+Each header field consists of a name and avalue, separated by a colon (:) for easy parsing.
+The headers end with a blank line. Adding a header field is as easy as adding another line.
+
+
+Body
+After the blank line is an optional message body containing any kind of data. Request bodies
+carry data to the web server; response bodies carry data back to the client. Unlike the start
+lines and headers, which are textual and structured, the body can contain arbitrary binary data
+(e.g., images, videos, audio tracks, software applications). Of course, the body can also
+contain text.
+
+
+When we type and enter
+http://www.joes-hardware.com/tools.html
+
+GET /tools.html HTTP/1.0
+User-agent: XXXXX
+Accept: text/html, image/gif, image/jpeg
+Accept-language: en
+
+The response body length is noted in the Content-Length header,
+document's MIME type is noted in the Content-Type header.
+
+
+1.6.3 A Real Example Using Telnet
+
+The Telnet utility connects your keyboard to a destination TCP port and connects the TCP port output
+back to your display screen.
+
+Telnet is commonly used for remote terminal sessions, but it can generally connect to any TCP server, including HTTP servers.
+
+You can use the Telnet utility to talk directly to web servers ,Telnet lets you open a TCP connection to
+a port on a machine and type characters directly into the port. The web server treats you as a web
+client, and any data sent back on the TCP connection is displayed onscreen.
+
+
+1.7 Protocol Versions
+
+HTTP/0.9
+The 1991 prototype
+
+
+
+
 

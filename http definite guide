@@ -232,6 +232,241 @@ particular local resource on the server is being requested.
 
 
 
+URL Shortcuts:
+
+Relative URL:
+
+1. Absolute
+2. Relative 
+
+Abosolute URL has all the information that u need to access a resource.
+
+Relative URL are incomplete. To gel all the information needed to access a
+resource from the relative URL, we must convert the relative URL to another URL 
+Called as Base.
+
+Relative URL are a convenient shorthand notation for the URL's 
+
+
+http://www.joes-hardware.com/tools.html
+
+tool.html
+
+<HTML>
+<HEAD></HEAD>
+<BODY>
+<A href="./hammers.html">
+</BODY>
+</HTML>
+
+here we have a hyperlink containing the URL ./hammers.html this URL seems to be 
+incomplete but its is compeltely legitimate.
+
+It can be interpreted relative to the URL of the document in which it is found;
+in this case, relative to the resource /tools.html on the Joe's Hardware web server.
+
+http://www.joes-hardware.com/tools.html
+Using this URL as a base, we can infer the missing information. We know the resource is
+./hammers.html, but we don't know the scheme or host. Using the base URL, we can infer that the
+scheme is http and the host is www.joes-hardware.com
+
+
+algorithm converts a relative URL to its absolute form, which can then be used to reference the
+resource. This algorithm was originally specified in RFC 1808 and later incorporated into RFC 2396.
+
+
+2.3.2 Expandomatic URLs
+
+Some browsers try to expand the URL's automatically after u submit the URL or while u are typing
+
+Hostname expansion:
+
+For example if you type "yahoo" in the address box, your browser can automatically insert
+"www." and ".com" onto the hostname, creating "www.yahoo.com
+
+History expansion:
+
+Another technique that browsers use to save you time typing URLs is to store a history of the
+URLs that you have visited in the past
+
+So, if you were typing in the start of a URL that you had visited previously, such as
+http://www.joes-, your browser could suggest http://www.joes-hardware.com.
+
+Shady Characters:
+
+URLs were designed to be portable. They were also designed to uniformly name all the resources on
+the Internet, which means that they will be transmitted through various protocols.
+
+
+Escape sequences allow the encoding of arbitrary character values or data using a restricted subset of the US-ASCII character set,
+yielding portability and completeness.
+
+
+2.4.2 Encoding Mechanisms
+The encoding simply represents the unsafe character
+by an "escape" notation, consisting of a percent sign (%) followed by two hexadecimal digits that
+represent the ASCII code of the character
+
+~ 126 (0x7E) http://www.joes-hardware.com/%7Ejo
+
+Currently, and for the foreseeable future, URLs are the way to name resources on the Internet. They
+are everywhere, and they have proven to be a very important part of the Web's success. It will be a
+while before any other naming scheme unseats URLs. However, URLs do have their limitations, and
+it is likely that
+
+
+CHAPTER-3:
+You'll know most of what you need to know to write your own HTTP applications.
+
+The terms "inbound," "outbound," "upstream," and "downstream" describe message direction.
+
+Messages Commute Inbound to the Origin Server
+
+Messages travel inbound to the origin server,
+and when their work is done, they travel outbound back to the user agent
+ 
+The start line and headers are just ASCII text,
+broken up by lines.
+Each line ends with a two-character end-of-line sequence, consisting of a carriage return (ASCII 13) and a line-feed character (ASCII 10).
+This end-of-line sequence is written "CRLF." It is worth pointing out that while the HTTP
+specification for terminating lines is CRLF, robust applications also should accept just a line-feed
+character. Some older or broken HTTP applications do not always send both the carriage return and
+line feed
+
+the body can contain text or binary data or can be empty.
+
+Here's the format for a request message:
+<method> <request-URL> <version>
+<headers>
+<entity-body>
+
+Here's the format for a response message (note that the syntax differs only in the start line):
+<version> <status> <reason-phrase>
+<headers>
+<entity-body>
+
+
+headers
+Zero or more headers, each of which is a name, followed by a colon ( : ), followed by optional
+whitespace, followed by a value, followed by a CRLF. 
+The headers are terminated by a blank ine (CRLF), marking the end of the list of headers 
+and the beginning of the entity body. Some versions of HTTP, such as HTTP/1.1, require certain headers to be present for the
+request or response message to be vali
+
+
+3.2.2 Start Lines
+All HTTP messages begin with a start line. The start line for a request message says what to do. The
+start line for a response message says what happened.
+
+PUT VS POST
+
+GET get the document from the server. NO MSG BODY
+HEAD get the headers for a document form the server NO MSG BODY
+POST Send the data to the server for processing MSG BODY
+PUT Store the data of the request on the server MSG BODY
+TRACE Trace the message through proxy servers to the server NO MSG BODY
+OPTIONS Determine what methods can operate on the server NO MSG BODY
+DELETE Remove the docuemnt from the server NO MSG BODY
+
+
+Status codes
+
+100-199 Informational
+200-299 Successful
+300-399 Redirection
+400-499 Client error
+500-599 Server error
+
+3.2.2.6 Version numbers
+Version numbers are intended to provide application speaking HTTP with a clue about
+each others capability and format of message, An HTTP version 1.2 application communicating with an HTTP 1.1 applicaton
+should know that it should not use any new 1.2 features, as they likely not implemented by the 
+application speaking the older version of the protocol.
+
+The version number indicates the highest version of HTTP that an application supports. In some cases
+this leads to confusion between applications, [2] because HTTP/1.0 applications interpret a response
+with HTTP/1.1 in it to indicate that the response is a 1.1 response, when in fact that's just the level of
+protocol used by the responding application.
+
+
+3.3 Methods
+
+Note that not all methods are implemented by every server, A server need to implement 
+only the GET and HEAD methods for its resources.
+
+Http  defines a set of methods call safe methods. The GET and HEAD methods are said to
+be sage, meaning that no action should occur as a result of an HTTP request and uses either 
+The get or head method.
+
+HEAD method.
+Server developers must ensure that headers returned are exactly those that a GET request
+would return.
+
+PUT:
+Writing documents on the server. Opposite of GET.
+The semantics of the PUT methods are for the server to take the body of the requestand either to use it
+to create a new document name requested by the URL or if that URL already exist use the body to replace it.
+
+
+Because PUT allows you to changes the content, Many webservers required you to login in 
+with a password before you can perform a PUT.
+
+POST:
+it is used to send input data to the server
+
+TRACE:
+When a client makes a request , that request may have to travel through firewalls,proxies,
+gateways or other apps Each of these has a oppurchunity to modify the original 
+HTTP request. The Trace method allows clients to see how its request looks when its finally makes it to the server.
+
+OPTIONS:
+ask the server to tell us about the various supported capabilites of the webserver.
+You can ask a server about what methods its supports in general or for particual resources.
+
+DELETE:
+it asks the server to delete the resources,specified by the request URL, client applications is 
+not guaranteed that the delete is carried out. This is because the HTTP specification allows
+the server to ovverdide the request without telling the client.
+
+Headers:
+
+General Heders:
+they procive very basic information about the message.
+Date header indicate when the msg was constructed.
+Connection,Date,MIME-Version...etc.
+
+Request Headers:
+They are specific to request messages. They provide extra information to the servers.
+such as type of data the client is willing to accept.
+Who is sending the request,
+HOST: Gives the hostname and port of the server to which the request is sent.
+
+  Accept headers;
+  Conditional Request headers
+  RequestSecurityHeaders
+    HTTP natively supports a simply challenge/response authentication schem for requests, 
+    it attepts to make transactions slightly more secure by requiring the clients to authenticate
+    themselves before geting access to certail resouces.
+  Proxy Request Headers
+
+Response Headers:
+They have their own set of headers that provide information the client.
+Ex: What type of server the client is taking to 
+Server: Tiki-Hut/1.0
+   Negotiation Headers
+  
+
+Entity-Headers:
+they refer with headers that deal with the entity body.
+example: tell the type of data in entity body.
+Content-Type:
+  ContentHeaders
+  EntityCachingHeaders
+
+
+Extension headers are created by the application developers.
+
+
 
 
 
